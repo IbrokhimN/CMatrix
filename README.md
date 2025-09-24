@@ -1,143 +1,114 @@
-# Matrix Toolbox in C
+# Matrix Toolbox
 
-A console-based **Matrix Toolbox** written in C.  
-It allows you to create, manipulate, and analyze matrices with essential linear algebra operations.  
-The program uses a simple menu system and supports both manual input and random generation.
+A C console program for working with matrices.  
+Supports: creation (manual/random), file I/O, addition, subtraction, multiplication, transpose, determinant, and inverse.
 
 ---
 
-## Features
+## Mathematical Background
 
-- Create matrices:
-  - Manual input
-  - Random initialization
-  - Load from file (`.txt`)
-- Save matrix to file
-- Basic operations:
-  - Addition: \( C = A + B \)
-  - Subtraction: \( C = A - B \)
-  - Multiplication: \( C = A \times B \)
-  - Transpose: \( A^T \)
-- Determinant:
+### Matrix Example (3×3)
+\[
+A =
+\begin{bmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{bmatrix}
+\]
+
+Determinant:
+\[
+\det(A) = 0
+\]
+(Singular → no inverse exists)
+
+---
+
+### Matrix Example (2×2)
+\[
+B =
+\begin{bmatrix}
+2 & 1 \\
+5 & 3
+\end{bmatrix}
+\]
+
+Determinant:
+\[
+\det(B) = (2 \cdot 3) - (5 \cdot 1) = 1
+\]
+
+Inverse:
+\[
+B^{-1} =
+\begin{bmatrix}
+3 & -1 \\
+-5 & 2
+\end{bmatrix}
+\]
+
+---
+
+## Implemented Operations
+
+- **Addition / Subtraction**  
   \[
-  \det(A) = \prod_{i=1}^{n} a_{ii}
+  (A \pm B)_{ij} = A_{ij} \pm B_{ij}
   \]
-  (computed via Gaussian elimination)
-- Inverse matrix (Gauss-Jordan elimination)
-- Memory-safe with dynamic allocation
+
+- **Multiplication**  
+  \[
+  (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
+  \]
+
+- **Transpose**  
+  \[
+  (A^T)_{ij} = A_{ji}
+  \]
+
+- **Determinant & Inverse**  
+  via Gaussian elimination with partial pivoting.
 
 ---
 
-## 🛠 Compilation & Run
+## Complexity
 
+- Addition/Subtraction: \(O(n^2)\)  
+- Multiplication: \(O(n^3)\)  
+- Determinant/Inverse: \(O(n^3)\)
+
+---
+
+## Usage
+
+Compile:
 ```bash
 gcc -std=c11 -O2 -Wall -lm -o matrix matrix.c
-./matrix
 ````
 
----
+Run:
 
-## File Format
+```bash
+./matrix
+```
 
-Text file representation:
+Console demo:
 
 ```
-rows cols
-a11 a12 ... a1n
-a21 a22 ... a2n
+=== Matrix Toolbox ===
+1) Create new matrix
+2) Random matrix
 ...
-am1 am2 ... amn
+> 2
+Rows: 3
+Cols: 3
+Min: 0
+Max: 10
+Random matrix created:
+  1.00  2.00  3.00
+  4.00  5.00  6.00
+  7.00  8.00  9.00
+
+Determinant = 0
 ```
-
-Example:
-
-```
-2 2
-1 2
-3 4
-```
-
----
-
-## Example Workflow
-
-1. Start program:
-
-   ```
-   ./matrix
-   ```
-
-2. Create a random $3 \times 3$ matrix.
-
-   Example matrix $A$:
-
-   $$
-   A =
-   \begin{bmatrix}
-   1 & 2 & 3 \\
-   4 & 5 & 6 \\
-   7 & 8 & 9
-   \end{bmatrix}
-   $$
-
-3. Compute determinant:
-
-   $$
-   \det(A) = 0
-   $$
-
-   (matrix is singular, no inverse exists)
-
-4. Try with another matrix:
-
-   $$
-   B =
-   \begin{bmatrix}
-   2 & 1 \\
-   5 & 3
-   \end{bmatrix}
-   $$
-
-   Determinant:
-
-   $$
-   \det(B) = (2 \cdot 3) - (5 \cdot 1) = 1
-   $$
-
-   Inverse:
-
-   $$
-   B^{-1} =
-   \begin{bmatrix}
-   3 & -1 \\
-   -5 & 2
-   \end{bmatrix}
-   $$
-
----
-
-## Concepts
-
-* **Transpose**: Flip over diagonal, $(A^T)_{ij} = A_{ji}$.
-* **Determinant**: Scalar value showing invertibility. If $\det(A) = 0$, matrix is singular.
-* **Inverse**: Matrix $A^{-1}$ such that:
-
-  $$
-  A \cdot A^{-1} = I
-  $$
-
----
-
-## Notes
-
-* Only square matrices have determinants and inverses.
-* Random matrices are generated within user-defined range.
-* Gaussian elimination is $O(n^3)$; efficient for small/medium matrices.
-
----
-
-## Future Improvements
-
-* Eigenvalues & eigenvectors
-* LU decomposition
-* Binary file format for faster I/O
