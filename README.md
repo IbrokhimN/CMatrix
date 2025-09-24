@@ -7,65 +7,74 @@ Supports: creation (manual/random), file I/O, addition, subtraction, multiplicat
 
 ## Mathematical Background
 
-### Matrix Example (3×3)
-\[
+### Example (3×3 matrix)
+
+$$
 A =
 \begin{bmatrix}
 1 & 2 & 3 \\
 4 & 5 & 6 \\
 7 & 8 & 9
 \end{bmatrix}
-\]
+$$
 
 Determinant:
-\[
+
+$$
 \det(A) = 0
-\]
+$$
+
 (Singular → no inverse exists)
 
 ---
 
-### Matrix Example (2×2)
-\[
+### Example (2×2 matrix)
+
+$$
 B =
 \begin{bmatrix}
 2 & 1 \\
 5 & 3
 \end{bmatrix}
-\]
+$$
 
 Determinant:
-\[
+
+$$
 \det(B) = (2 \cdot 3) - (5 \cdot 1) = 1
-\]
+$$
 
 Inverse:
-\[
+
+$$
 B^{-1} =
 \begin{bmatrix}
 3 & -1 \\
 -5 & 2
 \end{bmatrix}
-\]
+$$
 
 ---
 
 ## Implemented Operations
 
-- **Addition / Subtraction**  
-  \[
-  (A \pm B)_{ij} = A_{ij} \pm B_{ij}
-  \]
+- **Addition / Subtraction**
 
-- **Multiplication**  
-  \[
-  (AB)_{ij} = \sum_{k=1}^{n} A_{ik}B_{kj}
-  \]
+$$
+(A \pm B)_{ij} = A_{ij} \pm B_{ij}
+$$
 
-- **Transpose**  
-  \[
-  (A^T)_{ij} = A_{ji}
-  \]
+- **Multiplication**
+
+$$
+(AB)_{ij} = \sum_{k=1}^{n} A_{ik} \, B_{kj}
+$$
+
+- **Transpose**
+
+$$
+(A^T)_{ij} = A_{ji}
+$$
 
 - **Determinant & Inverse**  
   via Gaussian elimination with partial pivoting.
@@ -74,15 +83,16 @@ B^{-1} =
 
 ## Complexity
 
-- Addition/Subtraction: \(O(n^2)\)  
-- Multiplication: \(O(n^3)\)  
-- Determinant/Inverse: \(O(n^3)\)
+- Addition/Subtraction: $O(n^2)$  
+- Multiplication: $O(n^3)$  
+- Determinant/Inverse: $O(n^3)$
 
 ---
 
 ## Usage
 
 Compile:
+
 ```bash
 gcc -std=c11 -O2 -Wall -lm -o matrix matrix.c
 ````
